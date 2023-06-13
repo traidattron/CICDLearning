@@ -18,7 +18,7 @@ jobs:
     steps:
       - run:
           name: "print world"
-          command: "echo Print World"
+          command: "echo ${MY_NAME_ENV}"
 
 
 # Orchestrate jobs using workflows

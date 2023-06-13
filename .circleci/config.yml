@@ -5,29 +5,19 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  print_hello:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: "print hello"
-          command: "echo Print Hello"
-  print_world:
+  build:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/base:2020.01
     steps:
+      - checkout
       - run:
-          name: "print world"
-          command: echo $MY_NAME_ENV
-
+          name: "echo an env var that is part of our project"
+          command: |
+            echo $MY_NAME_ENV
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  test-env-vars:
     jobs:
-      - print_hello
-      - print_world:
-          requires:
-          - print_hello
-
+      - build

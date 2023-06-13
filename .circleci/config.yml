@@ -9,14 +9,13 @@ jobs:
     docker:
       - image: cimg/base:2020.01
     steps:
-      - checkout
       - run:
           command: |
             echo "hello world hell yeah!" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - echo-output
+            - output.txt
   print_output_file:
     docker:
       - image: cimg/base:2020.01
